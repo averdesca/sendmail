@@ -1,0 +1,62 @@
+
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+//apply plugin: 'osgi'
+apply plugin:'application'
+
+//apply plugin:'gradle-one-jar'
+
+//apply plugin: 'us.kirchmeier.capsule'
+
+sourceCompatibility = 1.6
+version = '1.0'
+
+configurations {
+	extraLibs
+}
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+	compile 'org.codehaus.groovy:groovy-all:2.1.5'
+
+	compile 'javax.mail:mail:1.4.7'
+
+	compile 'joda-time:joda-time:2.3'
+	
+	compile 'commons-cli:commons-cli:1.2'
+
+	
+	
+
+	
+}
+
+test {
+    
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
+
+configurations.all {
+	resolutionStrategy {
+	  force "org.codehaus.groovy:groovy:2.1.5"
+	}
+  }
+
+
+mainClassName = "it.edistribuzione.SendMail"
